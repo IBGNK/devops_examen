@@ -5,9 +5,9 @@ pipeline {
     }
     stages{
         stage('Git Check out') {
-      steps{
-        checkout scm
-      }
+              steps{
+                  checkout scm
+              }
     }
 
     stage('Build avec Maven') {
