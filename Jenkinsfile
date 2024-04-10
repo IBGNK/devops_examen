@@ -3,25 +3,20 @@ pipeline {
     tools{
         maven 'maven'
     }
+    stages{
+        stage('Git Check out') {
+      steps{
+        checkout scm
+      }
+    }
 
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -version'
-                // Clean the project
-                sh 'mvn clean'
-
-                // Compile the project
-                sh 'mvn compile'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Run unit tests
-                sh 'mvn test'
-            }
-        }
+    stage('Build avec Maven') {
+      steps {
+        sh "${mvn}/bin/mvn clean package "
+      }
+    }
+    
+     
 
         stage('Package') {
             steps {
